@@ -2,10 +2,12 @@ package com.yurnero.bluetooth
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
+import android.bluetooth.BluetoothManager
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanFilter
 import android.bluetooth.le.ScanResult
 import android.bluetooth.le.ScanSettings
+import android.content.Context
 import android.os.ParcelUuid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -28,8 +30,11 @@ class AndroidScanner internal constructor(
 ) : Scanner {
 
     private val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
-        ?: error("Bluetooth not supported")
 
+//        ?: error("Bluetooth not supported")
+//    private val bluetoothManager =
+//        (context.getSystemService(Context.BLUETOOTH_SERVICE)
+//            ?: error("Bluetooth not supported")) as BluetoothManager
     override val advertisements: Flow<Advertisement> = callbackFlow {
         val scanner = bluetoothAdapter.bluetoothLeScanner ?: throw BluetoothDisabledException()
 

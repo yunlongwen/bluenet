@@ -1,9 +1,11 @@
 package com.yurnero.bluetooth
 
 import android.bluetooth.le.ScanSettings
+import android.content.Context
 import com.benasher44.uuid.Uuid
 
 class ScannerBuilder {
+
     @Deprecated(
         message = "Replaced by filters property",
         level = DeprecationLevel.ERROR,
@@ -15,6 +17,8 @@ class ScannerBuilder {
         get() = filters?.filterIsInstance<Filter.Service>()?.map { it.uuid }
 
     var filters: List<Filter>? = null
+
+//    lateinit var context: Context
 
     /**
      * Allows for the [Scanner] to be configured via Android's [ScanSettings].

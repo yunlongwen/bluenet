@@ -4,7 +4,7 @@ import com.benasher44.uuid.Uuid
 import kotlinx.coroutines.flow.Flow
 
 interface Scanner {
-    public val advertisements: Flow<Advertisement>
+    val advertisements: Flow<Advertisement>
 }
 
 fun Scanner(services: List<Uuid>?): Scanner =
