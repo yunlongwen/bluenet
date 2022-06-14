@@ -1,0 +1,104 @@
+package com.yurnero.bluetooth
+
+import android.annotation.SuppressLint
+import android.bluetooth.BluetoothAdapter
+import android.bluetooth.le.ScanCallback
+import android.bluetooth.le.ScanFilter
+import android.bluetooth.le.ScanResult
+import android.bluetooth.le.ScanSettings
+import android.os.ParcelUuid
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.channels.onFailure
+import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.trySendBlocking
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.callbackFlow
+import kotlinx.coroutines.flow.flowOn
+import timber.log.Timber
+
+class ScanFailedException internal constructor(
+    private val errorCode: Int,
+) : IllegalStateException("Bluetooth scan failed with error code $errorCode")
+
+@SuppressLint("NewApi", "MissingPermission")
+class AndroidScanner internal constructor(
+    private val filters: List<Filter>?,
+    private val scanSettings: ScanSettings
+) : Scanner {
+
+    private val bluetoothAdapter = BluetoothAdapter.getDefaultAdapter()
+        ?: error("Bluetooth not supported")
+
+    override val advertisements: Flow<Advertisement> = callbackFlow {
+        val scanner = bluetoothAdapter.bluetoothLeScanner ?: throw BluetoothDisabledException()
+
+        val callback = object : ScanCallback() {
+            override fun onScanResult(callbackType: Int, result: ScanResult) {
+                trySendBlocking(Advertisement(result))
+                    .onFailure {
+                        Timber.w(
+                            message =
+                            "Unable to deliver scan result due to failure in flow or premature closing."
+                        )
+                    }
+            }
+
+            override fun onBatchScanResults(results: MutableList<ScanResult>) {
+                runCatching {
+                    results.forEach {
+                        trySendBlocking(Advertisement(it)).getOrThrow()
+                    }
+                }.onFailure {
+                    Timber.w(
+                        message =
+                        "Unable to deliver batch scan results due to failure in flow or premature closing."
+                    )
+                }
+            }
+
+            override fun onScanFailed(errorCode: Int) {
+                Timber.e(message = "Scan could not be started, error code $errorCode.")
+                cancel("Bluetooth scan failed", ScanFailedException(errorCode))
+            }
+        }
+
+        Timber.i(
+            message = if (filters?.isEmpty() != false) {
+                "Starting scan without filters"
+            } else {
+                "Starting scan with ${filters.size} filter(s)"
+            }
+        )
+
+        val scanFilters = filters?.map { filter ->
+            ScanFilter.Builder().apply {
+                when (filter) {
+                    is Filter.ManufacturerData ->
+                        setManufacturerData(filter.id, filter.data, filter.dataMask)
+                    is Filter.Service ->
+                        setServiceUuid(ParcelUuid(filter.uuid)).build()
+                }
+            }.build()
+        }.orEmpty()
+
+        scanner.startScan(scanFilters, scanSettings, callback)
+
+        awaitClose()
+        {
+            Timber.i(
+                message = if (scanFilters.isEmpty()) {
+                    "Stopping scan without filters"
+                } else {
+                    "Stopping scan with ${filters?.size ?: 0} filter(s)"
+                }
+            )
+
+            try {
+                scanner.stopScan(callback)
+            } catch (e: IllegalStateException) {
+                Timber.w(message = "Failed to stop scan. ")
+            }
+        }
+    }.flowOn(Dispatchers.Main.immediate)
+}
