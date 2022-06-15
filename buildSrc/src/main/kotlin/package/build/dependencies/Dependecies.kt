@@ -11,7 +11,16 @@ fun DependencyHandlerScope.appDependencies() {
         "androidx.compose.ui:ui-tooling-preview:${Version.compose_version}",
         "androidx.lifecycle:lifecycle-runtime-ktx:${Version.lifecycle_runtime}",
         "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Version.kotlinx_coroutines}",
-        "com.jakewharton.timber:timber:${Version.timber}"
+        "com.jakewharton.timber:timber:${Version.timber}",
+        "com.google.accompanist:accompanist-permissions:${Version.permissions_accompanist}",
+
+        "com.google.dagger:hilt-android-gradle-plugin:${Version.hilt}",
+        "com.google.dagger:hilt-android:${Version.hilt}",
+
+        "androidx.hilt:hilt-navigation-compose:${Version.hilt_navigation}",
+        "androidx.navigation:navigation-fragment-ktx:${Version.navigation}",
+        "androidx.navigation:navigation-ui-ktx:${Version.navigation}"
+
     )
 }
 

@@ -1,4 +1,4 @@
 package com.yurnero.bluenet.foundation
  
-interface Action {
+interface ViewEvent {
 }

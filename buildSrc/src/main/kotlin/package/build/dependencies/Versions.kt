@@ -10,10 +10,13 @@ object Version {
     const val activity_compose = "1.4.0"
     const val kotlinx_coroutines = "1.6.2"
     const val uuid = "0.4.0"
-
+    const val hilt = "2.42"
     const val kotlin_dsl_plugins = "2.1.7"
     const val gradle = "7.2.1"
     const val timber = "5.0.1"
+    const val permissions_accompanist = "0.23.1"
+    const val navigation = "2.4.2"
+    const val hilt_navigation = "1.0.0"
 
     const val junit = "4.13.2"
     const val androidx_junit = "1.1.3"

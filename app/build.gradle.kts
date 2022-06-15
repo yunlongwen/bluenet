@@ -1,6 +1,11 @@
+import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
+
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs.kotlin")
+    kotlin("kapt")
 }
 
 
@@ -50,6 +55,7 @@ android {
 }
 
 dependencies {
+    kapt("com.google.dagger:hilt-android-compiler:${Version.hilt}")
     implementation(project(mapOf("path" to ":blue_library")))
     appDependencies()
     unitTestDependencies()

@@ -2,17 +2,15 @@ package com.yurnero.bluetooth
 
 import android.annotation.SuppressLint
 import android.bluetooth.BluetoothAdapter
-import android.bluetooth.BluetoothManager
 import android.bluetooth.le.ScanCallback
 import android.bluetooth.le.ScanFilter
 import android.bluetooth.le.ScanResult
 import android.bluetooth.le.ScanSettings
-import android.content.Context
 import android.os.ParcelUuid
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
-import kotlinx.coroutines.channels.onFailure
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.onFailure
 import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
@@ -68,7 +66,7 @@ class AndroidScanner internal constructor(
             }
         }
 
-        Timber.i(
+        Timber.d(
             message = if (filters?.isEmpty() != false) {
                 "Starting scan without filters"
             } else {
@@ -91,7 +89,7 @@ class AndroidScanner internal constructor(
 
         awaitClose()
         {
-            Timber.i(
+            Timber.d(
                 message = if (scanFilters.isEmpty()) {
                     "Stopping scan without filters"
                 } else {
