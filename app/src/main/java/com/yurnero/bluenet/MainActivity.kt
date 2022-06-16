@@ -8,18 +8,17 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.Modifier
 import com.yurnero.bluenet.foundation.BaseActivity
-import com.yurnero.bluenet.presentation.ScanScreen
-import com.yurnero.bluenet.presentation.scan.ScanContract
-import com.yurnero.bluenet.presentation.scan.ScanViewModel
+import com.yurnero.bluenet.ui.feature.main.MainContract
+import com.yurnero.bluenet.ui.feature.main.MainViewModel
+import com.yurnero.bluenet.ui.navigation.AppNavigation
 import com.yurnero.bluenet.ui.theme.BlueNetTheme
 import dagger.hilt.android.AndroidEntryPoint
-import timber.log.Timber
 
 @AndroidEntryPoint
 class MainActivity :
-    BaseActivity<ScanContract.Intent, ScanContract.Event, ScanContract.State, ScanViewModel>() {
+    BaseActivity<MainContract.Intent, MainContract.Event, MainContract.State, MainViewModel>() {
 
-    override val viewModel: ScanViewModel by viewModels()
+    override val viewModel: MainViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,17 +28,13 @@ class MainActivity :
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    ScanScreen()
+                    AppNavigation()
                 }
             }
         }
     }
 
-    override fun render(event: ScanContract.Event) {
-        when (event) {
-            is ScanContract.Event.OnNewDevice -> {
-                Timber.d("wyl,OnNewDevice:${event.advertisement.name}")
-            }
-        }
+    override fun render(event: MainContract.Event) {
+
     }
 }

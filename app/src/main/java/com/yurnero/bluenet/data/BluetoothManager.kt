@@ -1,4 +1,4 @@
-package com.yurnero.bluenet.domain
+package com.yurnero.bluenet.data
 
 import com.yurnero.bluetooth.Advertisement
 import com.yurnero.bluetooth.Scanner

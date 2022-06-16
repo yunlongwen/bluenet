@@ -1,4 +1,4 @@
-package com.yurnero.bluenet.presentation.scan
+package com.yurnero.bluenet.ui.feature.scan
 
 import com.yurnero.bluenet.foundation.ViewEvent
 import com.yurnero.bluenet.foundation.ViewIntent

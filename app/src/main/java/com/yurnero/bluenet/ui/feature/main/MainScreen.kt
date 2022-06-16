@@ -1,18 +1,15 @@
-package com.yurnero.bluenet.presentation
+package com.yurnero.bluenet.ui.feature.main
 
 import android.Manifest
 import androidx.compose.material.Button
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.hilt.navigation.compose.hiltViewModel
-import com.yurnero.bluenet.presentation.scan.ScanContract.Intent
-import com.yurnero.bluenet.presentation.scan.ScanViewModel
+import androidx.navigation.NavHostController
+import com.yurnero.bluenet.ui.navigation.navigateToScanning
 import com.yurnero.bluenet.util.ComposablePermission
 
 @Composable
-fun ScanScreen() {
-    // TODO move to MainScreen
-    val viewModel: ScanViewModel = hiltViewModel()
+fun MainScreen(navController: NavHostController) {
     ComposablePermission(
         permission = Manifest.permission.ACCESS_FINE_LOCATION,
         onDenied = { Text("Permission Denied.") },
@@ -22,8 +19,10 @@ fun ScanScreen() {
             }
         },
         onGranted = {
-            Button(onClick = { viewModel.dispatchIntent(Intent.ScanDevice) }) {
-                Text(text = "Scan device")
+            Button(onClick = {
+                navController.navigateToScanning()
+            }) {
+                Text("GOGOGO!!!")
             }
         })
 }

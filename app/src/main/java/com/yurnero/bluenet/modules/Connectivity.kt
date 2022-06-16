@@ -1,7 +1,7 @@
 package com.yurnero.bluenet.modules
 
-import com.yurnero.bluenet.domain.BluetoothManager
-import com.yurnero.bluenet.domain.BluetoothManagerImp
+import com.yurnero.bluenet.data.BluetoothManager
+import com.yurnero.bluenet.data.BluetoothManagerImp
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

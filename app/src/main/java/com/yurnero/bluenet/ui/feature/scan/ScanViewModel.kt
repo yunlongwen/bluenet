@@ -1,7 +1,7 @@
-package com.yurnero.bluenet.presentation.scan
+package com.yurnero.bluenet.ui.feature.scan
 
 import androidx.lifecycle.viewModelScope
-import com.yurnero.bluenet.domain.BluetoothManager
+import com.yurnero.bluenet.data.BluetoothManager
 import com.yurnero.bluenet.foundation.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.catch

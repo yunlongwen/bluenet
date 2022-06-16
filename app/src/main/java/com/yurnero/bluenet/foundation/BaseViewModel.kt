@@ -17,7 +17,11 @@ import timber.log.Timber
  * on a particular view, and in our case the user may want to retrieve the data or
  * refresh the view to get the new information.
  *
- * @param EVENT  Define one-time events such as toast and page closing events.
+ * @param EVENT plain object that signals one-time side-effect actions that should impact the UI
+ * e.g. triggering a navigation action, showing a Toast, SnackBar etc.
+ *  Effects are exposed as ChannelFlow which behave as in each event is delivered to a
+ *  single subscriber. An attempt to post an event without subscribers
+ *  will suspend as soon as the channel buffer becomes full, waiting for a subscriber to appear.
  *
  * @param STATE It represents an immutable state of sight.A new state is created by the
  * ViewModel each time the view needs to be updated.
