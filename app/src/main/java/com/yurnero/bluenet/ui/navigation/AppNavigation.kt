@@ -9,7 +9,6 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.yurnero.bluenet.ui.feature.connection.ConnectionScreen
 import com.yurnero.bluenet.ui.feature.main.MainScreen
-import com.yurnero.bluenet.ui.feature.scan.ScanScreen
 import com.yurnero.bluenet.ui.navigation.Navigation.Args.PERIPHERAL_ID
 
 @Composable
@@ -22,7 +21,7 @@ fun AppNavigation() {
         }
 
         composable(route = Navigation.Router.PERIPHERALS) {
-            ScanScreen(navController = navController)
+            ScanScreenDestination(navController = navController)
         }
 
         composable(

@@ -26,16 +26,8 @@ C
 local.properties,0/7/0712df971a99ac4d2fccb8e0fb19f377f3374cca
 ;
 gradlew.bat,2/a/2a45a911a8f1836b0b6c5b758962572012d8f8c3
-n
->blue_library/src/main/java/com/yurnero/bluetooth/Exceptions.kt,c/e/cef0ee3bf391a0aa0777d468c517640b1b18380a
-j
-:blue_library/src/main/java/com/yurnero/bluetooth/Filter.kt,e/4/e47bb7309bbcdbf4257d7d7e2e6e39ce9b577a6a
-m
-=app/src/main/java/com/yurnero/bluenet/foundation/ViewState.kt,f/4/f4bb3150c267d53eb2aa39e4a57e97ff45fa21d1
 P
  app/src/main/AndroidManifest.xml,8/c/8c55c3ccc257e5907959013f99656e4c8ec3903e
-r
-Bblue_library/src/main/java/com/yurnero/bluetooth/AndroidScanner.kt,f/6/f6db8c5e74c3221257402e769b19870a42bd8a5b
 D
 app/build.gradle.kts,d/2/d2a4383452aad84a18429a5844d31330a012a9e6
 @
@@ -44,5 +36,27 @@ r
 BbuildSrc/src/main/kotlin/package/build/dependencies/Dependecies.kt,e/4/e492c790689bac382ca646644acb73dade2c201c
 o
 ?buildSrc/src/main/kotlin/package/build/dependencies/Versions.kt,4/6/46a9295763988cceb44d210475ae203abad436c8
+c
+3app/src/main/java/com/yurnero/bluenet/BlueNetApp.kt,a/a/aabb4d6297966a67e549a793c442cafb45b12c41
+k
+;blue_library/src/main/java/com/yurnero/bluetooth/Scanner.kt,b/5/b500edcea118f48dd4cbe88a37ae61a2ec11dddd
+g
+7app/src/main/java/com/yurnero/bluenet/ui/theme/Color.kt,f/9/f9d88367abbd488ce1f12fdf14aad30d131007d3
+g
+7app/src/main/java/com/yurnero/bluenet/ui/theme/Shape.kt,e/6/e6f1679dd13b12687cbcf95825a3ccf3e501dfcf
+g
+7app/src/main/java/com/yurnero/bluenet/ui/theme/Theme.kt,f/f/ff23d8be2887deeef815937fc84a66337739b598
 m
-=app/src/main/java/com/yurnero/bluenet/foundation/ViewEvent.kt,a/6/a641776a452b941498f896d009b97755efbddecc
+=app/src/main/java/com/yurnero/bluenet/modules/Connectivity.kt,b/1/b1ed9ec5bcaf078c1b4e6a23b2797ebc946b2256
+
+Oapp/src/main/java/com/yurnero/bluenet/ui/feature/connection/ConnectionScreen.kt,0/1/01aa3e4d4d17ddbc55d1bfbdc82a6191ce6a37f9
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+n
+>blue_library/src/main/java/com/yurnero/bluetooth/Exceptions.kt,c/e/cef0ee3bf391a0aa0777d468c517640b1b18380a
+j
+:blue_library/src/main/java/com/yurnero/bluetooth/Filter.kt,e/4/e47bb7309bbcdbf4257d7d7e2e6e39ce9b577a6a
+q
+Ablue_library/src/main/java/com/yurnero/bluetooth/Advertisement.kt,8/e/8e5506945c37360f02bb27f4662557cd9b333155
+r
+Bblue_library/src/main/java/com/yurnero/bluetooth/AndroidScanner.kt,f/6/f6db8c5e74c3221257402e769b19870a42bd8a5b

@@ -13,7 +13,6 @@ fun ComposablePermission(
     onGranted: @Composable () -> Unit,
     onNotGranted: @Composable (requester: () -> Unit) -> Unit
 ) {
-    val permission = permission
 
     val permissionState = rememberPermissionState(permission)
     PermissionRequired(

@@ -1,14 +1,12 @@
 package com.yurnero.bluenet.foundation
 
-import android.os.Bundle
 import androidx.activity.ComponentActivity
 
-abstract class BaseActivity<INTENT : ViewIntent, EVENT : ViewEvent, STATE : ViewState,
-        VM : BaseViewModel<INTENT, EVENT, STATE>> :
-    IViewRenderer<EVENT>, ComponentActivity() {
+abstract class BaseActivity<INTENT : ViewIntent, EFFECT : ViewEffect, STATE : ViewState,
+        VM : BaseViewModel<INTENT, EFFECT, STATE>> : ComponentActivity() {
 
-    private lateinit var event: EVENT
-    val mEvent get() = event
+    private lateinit var _effect: EFFECT
+    val effect get() = _effect
 
     /**
      * Abstract [BaseViewModel] to be overridden by implementation class.
@@ -20,12 +18,4 @@ abstract class BaseActivity<INTENT : ViewIntent, EVENT : ViewEvent, STATE : View
      * ```
      */
     abstract val viewModel: VM
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel.event.observe(this) {
-            event = it
-            render(event)
-        }
-    }
 }

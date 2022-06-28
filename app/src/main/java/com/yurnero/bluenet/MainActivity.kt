@@ -16,7 +16,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity :
-    BaseActivity<MainContract.Intent, MainContract.Event, MainContract.State, MainViewModel>() {
+    BaseActivity<MainContract.Intent, MainContract.Effect, MainContract.State, MainViewModel>() {
 
     override val viewModel: MainViewModel by viewModels()
 
@@ -32,9 +32,5 @@ class MainActivity :
                 }
             }
         }
-    }
-
-    override fun render(event: MainContract.Event) {
-
     }
 }
